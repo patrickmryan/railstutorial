@@ -9,9 +9,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(self.user_params())
+    # for some weird reason, self.fn() doesn't work
+    # when fn() is private
+    
+    @user = User.new(user_params())
     if @user.save()
       # success
+      flash[:success] = "Welcome to the Sample App"
+      self.redirect_to(@user)
     else
       # unsuccessful
       self.render('new')
