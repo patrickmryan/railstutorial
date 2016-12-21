@@ -3,6 +3,6 @@ applications:
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: sampleapp1pmr
-  host: sampleapp1pmr
+  name: sample_app
+  host: sample_app
   disk_quota: 1024M
