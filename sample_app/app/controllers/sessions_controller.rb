@@ -16,5 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    self.log_out()
+    self.redirect_to(root_url)
   end
 end
