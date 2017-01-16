@@ -14,19 +14,20 @@ class ActiveSupport::TestCase
   def log_in_as(user)
     session[:user_id] = user.id
   end
-#end
+end
 
-#class ActionDispatch::IntegrationTest
+class ActionDispatch::IntegrationTest
   # Log in as a particular user.
   def log_in_as(user, options = {})
     password    = options[:password] || 'password'
     remember_me = options[:remember_me] || '1'
+     #debugger
     if (integration_test?)
-      post login_path, session: { email: user.email,
+      self.post(self.login_path(), session: { email: user.email,
         password: password,
-        remember_me: remember_me }
+        remember_me: remember_me })
     else
-      session[:user_id] = user.id
+      self.session()[:user_id] = user.id
     end
 
   end
