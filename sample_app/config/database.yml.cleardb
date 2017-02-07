@@ -1,0 +1,43 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+
+<%
+require 'json'
+
+# extract the database URL from VCAP_SERVICES
+
+text = ENV['VCAP_SERVICES']
+services = JSON.parse(text)
+cleardb_databases = services["cleardb"]
+
+# VCAP includes an array of databases. We are assuming here that
+# there is only one.
+element = cleardb_databases.first() 
+
+cred_hash = element["credentials"]
+uri = cred_hash["uri"]
+
+# Ruby prefers the mysql2 adapter. Using ClearDB results in
+# a database URI with a scheme of "mysql".  Need to do some
+# parsing to rewrite the scheme.
+
+/^(?<scheme>\w+):(?<therest>.*)/ =~ uri
+
+database_url = "mysql2:" + therest
+
+%>
+
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  adapter: mysql2
+  url: <%= database_url %>
+
+
