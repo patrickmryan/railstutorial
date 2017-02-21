@@ -39,5 +39,8 @@ default: &default
 development:
   adapter: mysql2
   url: <%= database_url %>
+##  url: mysql2://b2707ee0c378d6:c6073a43@us-cdbr-iron-east-04.cleardb.net:3306/ad_01c858d36d7ea94?reconnect=true
 
-
+test:
+  adapter: mysql2
+  url: <%= database_url %>
