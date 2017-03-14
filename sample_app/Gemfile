@@ -20,11 +20,15 @@ gem 'bootstrap-will_paginate', '0.0.10'
 ##gem 'bootstrap-sass',  '3.2.0.0'
 gem 'bootstrap-sass'
 
-### Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+group :osx do
+	# Use sqlite3 as the database for Active Record
+    gem 'sqlite3'
+end
 
-# needed for accessing MySQL remotely (ClearDB, aws)
-gem 'mysql2'
+group :cloud do
+    # needed for accessing MySQL remotely (ClearDB, aws)
+	gem 'mysql2'
+end
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
