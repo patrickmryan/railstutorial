@@ -79,9 +79,7 @@ class UsersController < ApplicationController
   
   def admin_user
     theUser = current_user
-    
- #   print "admin_user: theUser = ", theUser.to_s, "\n"
-    
+     
   #  redirect_to(root_url) unless (theUser && theUser.admin?)
     redirect_to(root_url) unless (theUser.admin?)
 
